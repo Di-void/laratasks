@@ -11,9 +11,10 @@
     </div>
 
     <div class="mt-6">
-        <x-primary-link-button path="">
+        @include('tasks.forms.create-task')
+        <x-primary-button x-on:click="$refs.createTask.showModal()">
             Create a Task
-        </x-primary-link-button>
+        </x-primary-button>
     </div>
 
 </div>

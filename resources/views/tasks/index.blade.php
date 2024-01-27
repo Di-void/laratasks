@@ -3,7 +3,7 @@ $tasks = Auth::user()->tasks;
 @endphp
 
 <x-app-layout>
-    <main class="flex flex-col w-full">
+    <main class="flex flex-col w-full" x-data>
 
         <header class="mt-4">
             <h1 class="text-clr-text-navy font-semibold font-gelion-semibold capitalize text-3xl">tasks</h1>
