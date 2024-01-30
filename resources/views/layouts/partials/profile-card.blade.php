@@ -1,4 +1,4 @@
-<section class="bg-clr-primary-100 rounded-lg h-full w-[16.125rem]">
+<section class="bg-clr-primary-100 rounded-lg h-full w-[14rem]">
     <div class="mt-6">
         <h1 class="capitalize text-center text-xl text-navy font-bold font-gelion-bold">{{
             auth()->user()->name }}

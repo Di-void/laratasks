@@ -32,6 +32,7 @@ export default {
                     100: "rgba(var(--primary-100))",
                     200: "rgba(var(--primary-200))",
                     300: "rgba(var(--primary-300))",
+                    400: "rgba(var(--primary-400))",
                 },
                 "clr-secondary": {
                     100: "rgba(var(--secondary-100))",
@@ -42,6 +43,7 @@ export default {
                 },
                 "clr-bg-primary": {
                     100: "rgba(var(--bg-primary-100))",
+                    200: "rgba(var(--bg-primary-200))",
                 },
                 "clr-text": {
                     100: "rgba(var(--text-100))",

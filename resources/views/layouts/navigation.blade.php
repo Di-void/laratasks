@@ -1,4 +1,4 @@
-<nav class="w-1/5 bg-clr-primary-100 flex">
+<nav class="w-1/6 bg-clr-primary-100 flex">
     <div class="w-1/4 bg-clr-primary-200"></div>
     <div class="h-full w-full">
         <ul class="mt-20">

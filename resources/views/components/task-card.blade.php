@@ -1,13 +1,13 @@
-@props([''])
+@props(['status', 'id', 'name'])
 
 <div class="bg-clr-primary-100 rounded-lg p-6 w-[253px]">
     <div class="flex justify-between items-center">
-        <h1 class="text-clr-text-200 text-sm font-semibold">T-01</h1>
+        <h1 class="text-clr-text-200 text-sm font-semibold">T-{{ $id < 10 ? '0' . $id : $id }}</h1>
 
-        <x-status-badge status='pending' />
+                <x-status-badge :status='$status' />
     </div>
 
-    <h2 class="mt-4 text-base font-medium font-gelion-medium">Create a Design System for Enum Workspace.</h2>
+    <h2 class="mt-4 text-base font-medium font-gelion-medium">{{ $name }}</h2>
 
     <footer class="mt-7">
         <a href=""

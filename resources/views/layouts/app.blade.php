@@ -18,7 +18,7 @@
     {{-- --}}
 
     <!-- Page Content -->
-    <main class="bg-clr-bg-primary-100 flex-1 p-10 flex">
+    <main class="bg-clr-bg-primary-100 flex-1 py-10 px-6 flex" x-data>
         <section class="flex-auto p-2 mr-10 flex">
             {{ $slot }}
         </section>

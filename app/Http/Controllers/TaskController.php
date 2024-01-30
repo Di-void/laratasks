@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class TaskController extends Controller
 {
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('tasks.index');
+        $tasks = Auth::user()->tasks;
+        $filter = $request->query('filter', 'all');
+
+        return view('tasks.index', ['tasks' => $tasks, 'filter' => $filter, 'count' => $tasks->count()]);
     }
 
     // TODO: validate date input

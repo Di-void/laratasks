@@ -17,7 +17,7 @@ $tasksCount = Auth::user()->tasks->count();
     <h1 class="font-xl font-bold font-gelion-bold">Tasks for Today</h1>
 
     <div class="mt-5">
-        <x-task-card />
+        <x-task-card status='pending' :id="1" name='Create something this is just a test' />
     </div>
     @endif
 
