@@ -74,7 +74,8 @@ $taskCount = 0;
             </ul>
         </div>
 
-        <div class="h-full mt-4 grid grid-cols-[253px_253px_253px] gap-3">
+        {{-- h-full was here just in case --}}
+        <div class="mt-4 grid grid-cols-[253px_253px_253px] gap-3">
             @foreach ($tasks as $task)
             {{-- id count --}}
             @php
@@ -82,9 +83,7 @@ $taskCount = 0;
             @endphp
             {{-- end --}}
 
-            <div class="h-fit w-fit">
-                <x-task-card :status="$task->status" :name="$task->name" :id="$taskCount" />
-            </div>
+            <x-task-card :status="$task->status" :name="$task->name" :id="$taskCount" />
             @endforeach
         </div>
 
