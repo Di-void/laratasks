@@ -1,5 +1,5 @@
 @php
-$tasksCount = Auth::user()->tasks->count();
+$count = 0;
 @endphp
 
 <div class="mt-6 block">
@@ -16,8 +16,13 @@ $tasksCount = Auth::user()->tasks->count();
     @else
     <h1 class="font-xl font-bold font-gelion-bold">Tasks for Today</h1>
 
-    <div class="mt-5">
-        <x-task-card status='pending' :id="1" name='Create something this is just a test' />
+    <div class="mt-5 grid grid-cols-[253px_253px_253px] gap-3">
+        @foreach ($tasks as $task)
+        @php
+        $count++
+        @endphp
+        <x-task-card :status="$task->status" :id="$count" :name="$task->name" />
+        @endforeach
     </div>
     @endif
 

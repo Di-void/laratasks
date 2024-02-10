@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    // Get logged in user
     $user = Auth::user();
-    return view('dashboard', ['user' => $user]);
+    // Get all tasks
+    $tasks = $user->tasks;
+    // Filter tasks by due_date
+    $filteredTasks = $tasks->filter(function ($value, $key) {
+        // only return tasks that are due *and* pending today
+        // if tasks's due date is greater than or equal to the current date
+        $due_date = $value->due_date;
+        if (($due_date === null || Carbon::createFromFormat('Y-m-d H:i:s', $due_date)->greaterThanOrEqualTo(now())) && $value->status === "pending") {
+            return true;
+        }
+    });
+
+    return view('dashboard', ['user' => $user, 'tasksCount' => $tasks->count(), 'tasks' => $filteredTasks]);
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -34,4 +48,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks', [TaskController::class, 'store']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
