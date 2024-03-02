@@ -39,7 +39,7 @@ $taskCount = 0;
                 </div>
 
                 <div class="mt-6">
-                    <x-primary-button x-on:click="$refs.createTask.showModal()">
+                    <x-primary-button x-on:click="openModal">
                         Create a Task
                     </x-primary-button>
                 </div>
