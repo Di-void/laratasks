@@ -18,9 +18,15 @@ class TaskController extends Controller
         return view('tasks.index', ['tasks' => $tasks, 'filter' => $filter, 'count' => $tasks->count()]);
     }
 
-    // TODO: validate date input
     public function store(Request $request): RedirectResponse
     {
+
+        $current_date = now()->toDateString();
+
+        $request->validate([
+            'due_date' => ['after_or_equal:' . $current_date, 'date']
+        ]);
+
         $input = $request->all();
         $id = $request->user()->id;
         $due_date = $request->date('due_date');

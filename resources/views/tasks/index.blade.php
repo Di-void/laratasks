@@ -1,8 +1,9 @@
 @php
 $taskCount = 0;
 @endphp
+
 <x-app-layout>
-    <section class="flex flex-col w-full">
+    <section x-data="modal" class="flex flex-col w-full">
 
         {{-- Create Task Dialog --}}
         @include('tasks.forms.create-task')
@@ -16,7 +17,7 @@ $taskCount = 0;
 
             <div>
                 @unless ($count === 0)
-                <x-primary-button x-on:click="$refs.createTask.showModal()">create a task</x-primary-button>
+                <x-primary-button x-on:click="openModal">create a task</x-primary-button>
                 @endunless
             </div>
         </header>
@@ -26,9 +27,9 @@ $taskCount = 0;
         <div class="flex-1">
             <div class="h-full flex flex-col justify-center items-center">
 
-                <div class="">
+                <div>
                     <div class="mx-auto w-fit">
-                        <img src="{{ Vite::asset('resources/images/no-tasks.png') }}" alt="">
+                        <img src="{{ Vite::asset('resources/images/no-tasks.png') }}" alt="no-tasks-images">
                     </div>
 
                     <h1 class="text-center mt-12 capitalize font-semibold font-gelion-semibold text-2xl">no tasks yet

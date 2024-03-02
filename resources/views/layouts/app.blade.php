@@ -7,12 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laratasks') }}</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Scripts -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="flex min-h-screen">
+<body class="flex min-h-screen z-50">
     {{-- Navigation Menu --}}
     @include('layouts.navigation')
     {{-- --}}
