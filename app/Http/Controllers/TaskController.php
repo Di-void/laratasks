@@ -21,11 +21,16 @@ class TaskController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-        $current_date = now()->toDateString();
+        $date_input = $request->input('due_date');
 
-        $request->validate([
-            'due_date' => ['after_or_equal:' . $current_date, 'date']
-        ]);
+        if ($date_input !== null) {
+            $current_date = now()->toDateString();
+
+            $request->validate([
+                'due_date' => ['after_or_equal:' . $current_date, 'date']
+            ]);
+        }
+
 
         $input = $request->all();
         $id = $request->user()->id;

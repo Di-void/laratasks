@@ -1,4 +1,6 @@
-<div {{ $errors->has('due_date') ? 'x-show=true' : 'x-show=open' }} class="fixed top-0 left-0 bg-black/75 w-screen
+{{-- TODO: Fix modal flashing. Problem arises because modal is not hidden by default --}}
+<div {{ $errors->has('due_date') ? 'x-show=isOpen(true)' : 'x-show=isOpen()' }} class="fixed top-0 left-0 bg-black/75
+    w-screen
     flex items-center justify-center h-screen">
     <div class="z-0 bg-clr-primary-100 px-12 py-6 rounded-lg w-[31rem]">
         <header>

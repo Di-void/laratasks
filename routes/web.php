@@ -27,18 +27,13 @@ Route::get('/', function () {
         // only return tasks that are due *and* pending today
         // if tasks's due date is greater than or equal to the current date
         $due_date = $value->due_date;
-        if (($due_date === null || Carbon::createFromFormat('Y-m-d H:i:s', $due_date)->greaterThanOrEqualTo(now())) && $value->status === "pending") {
+        if (($due_date === null || Carbon::createFromFormat('Y-m-d H:i:s', $due_date)->greaterThanOrEqualTo(today())) && $value->status === "pending") {
             return true;
         }
     });
 
     return view('dashboard', ['user' => $user, 'tasksCount' => $tasks->count(), 'tasks' => $filteredTasks]);
 })->middleware(['auth'])->name('dashboard');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
