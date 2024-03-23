@@ -39,4 +39,12 @@ class TaskController extends Controller
         DB::table('tasks')->insert($input);
         return back();
     }
+
+    public function show(string $id): View
+    {
+
+        $task = DB::table('tasks')->where('id', $id)->first();
+
+        return view('tasks.task', ['task' => $task]);
+    }
 }

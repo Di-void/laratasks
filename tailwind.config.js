@@ -33,6 +33,7 @@ export default {
                     200: "rgba(var(--primary-200))",
                     300: "rgba(var(--primary-300))",
                     400: "rgba(var(--primary-400))",
+                    500: "rgba(var(--primary-500))",
                 },
                 "clr-secondary": {
                     100: "rgba(var(--secondary-100))",
@@ -44,10 +45,13 @@ export default {
                 "clr-bg-primary": {
                     100: "rgba(var(--bg-primary-100))",
                     200: "rgba(var(--bg-primary-200))",
+                    300: "rgba(var(--bg-primary-300))",
+                    400: "rgba(var(--bg-primary-400))",
                 },
                 "clr-text": {
                     100: "rgba(var(--text-100))",
                     200: "rgba(var(--text-200))",
+                    300: "rgba(var(--text-300))",
                     navy: "rgba(var(--text-navy))",
                     pending: "rgba(var(--text-pending))",
                     progress: "rgba(var(--text-progress))",

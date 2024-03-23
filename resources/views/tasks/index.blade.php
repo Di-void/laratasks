@@ -84,7 +84,7 @@ $taskCount = 0;
             @endphp
             {{-- end --}}
 
-            <x-task-card :status="$task->status" :name="$task->name" :id="$taskCount" />
+            <x-task-card :taskId="$task->id" :status="$task->status" :name="$task->name" :id="$taskCount" />
             @endforeach
         </div>
 

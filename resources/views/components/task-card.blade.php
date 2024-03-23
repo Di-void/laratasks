@@ -1,4 +1,4 @@
-@props(['status', 'id', 'name'])
+@props(['status', 'id', 'name', 'taskId'])
 
 <div class="bg-clr-primary-100 flex flex-col rounded-lg p-6 w-[253px]">
     <div class="flex justify-between items-center">
@@ -11,8 +11,8 @@
 
     {{-- GPT says margin-top: auto pushes it to the bottom in a flexbox setting --}}
     <footer class="mt-auto">
-        <a href=""
-            class="capitalize cursor-pointer text-clr-primary-200 text-sm font-semibold font-gelion-semibold flex gap-4 items-center"><span>view
+        <a href="{{ url("/tasks/{$taskId}") }}" class="capitalize cursor-pointer text-clr-primary-200 text-sm font-semibold font-gelion-semibold flex gap-4
+            items-center"><span>view
                 task</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <path
