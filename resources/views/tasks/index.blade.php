@@ -5,9 +5,7 @@ $taskCount = 0;
 <x-app-layout>
     <section x-data="modal" class="flex flex-col w-full">
 
-        {{-- Create Task Dialog --}}
-        @include('tasks.forms.create-task')
-        {{-- End Dialog --}}
+        <x-create-task-modal />
 
         <header class="mt-4 flex justify-between">
             <div>
@@ -16,13 +14,13 @@ $taskCount = 0;
             </div>
 
             <div>
-                @unless ($count === 0)
+                @unless ($totalCount === 0)
                 <x-primary-button x-on:click="openModal">create a task</x-primary-button>
                 @endunless
             </div>
         </header>
 
-        @if($count === 0)
+        @if($totalCount === 0)
 
         <div class="flex-1">
             <div class="h-full flex flex-col justify-center items-center">
@@ -54,23 +52,26 @@ $taskCount = 0;
                 <li
                     class="capitalize pb-3 {{ $filter === 'all' ? 'text-clr-primary-200 font-bold font-gelion-bold border-b-clr-primary-200' : 'border-b-transparent' }} border-b-2 hover:border-b-clr-primary-200">
                     <a href="{{ route('tasks') }}" class="flex items-center gap-3">all tasks <span
-                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">3</span></a>
+                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">{{
+                            $totalCount }}</span></a>
                 </li>
                 <li
                     class="capitalize pb-3 border-b-2 {{ $filter === 'pending' ? 'text-clr-primary-200 font-bold font-gelion-bold border-b-clr-primary-200' : 'border-b-transparent' }} hover:border-b-clr-primary-200">
                     <a href="{{ route('tasks') . '?filter=pending' }}" class="flex items-center gap-3">pending <span
-                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">3</span></a>
+                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">{{
+                            $counts['pending'] }}</span></a>
                 </li>
                 <li
-                    class="capitalize pb-3 border-b-2 {{ $filter === 'progress' ? 'text-clr-primary-200 font-bold font-gelion-bold border-b-clr-primary-200' : 'border-b-transparent' }} hover:border-b-clr-primary-200">
-                    <a href="{{ route('tasks') . '?filter=progress' }}" class="flex items-center gap-3">in progress
-                        <span
-                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">3</span></a>
+                    class="capitalize pb-3 border-b-2 {{ $filter === 'in_progress' ? 'text-clr-primary-200 font-bold font-gelion-bold border-b-clr-primary-200' : 'border-b-transparent' }} hover:border-b-clr-primary-200">
+                    <a href="{{ route('tasks') . '?filter=in_progress' }}" class="flex items-center gap-3">in progress
+                        <span class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">{{
+                            $counts['in_progress'] }}</span></a>
                 </li>
                 <li
                     class="capitalize pb-3 border-b-2 {{ $filter === 'completed' ? 'text-clr-primary-200 font-bodl font-gelion-bold border-b-clr-primary-200' : 'border-b-transparent' }} hover:border-b-clr-primary-200">
                     <a href="{{ route('tasks') . '?filter=completed' }}" class="flex items-center gap-3">completed <span
-                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">3</span></a>
+                            class="rounded-full h-6 w-6 bg-clr-bg-primary-200 flex justify-center items-center">{{
+                            $counts['completed'] }}</span></a>
                 </li>
             </ul>
         </div>

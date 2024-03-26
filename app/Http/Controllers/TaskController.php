@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +13,23 @@ class TaskController extends Controller
 {
     public function create(Request $request): View
     {
-        $tasks = Auth::user()->tasks;
+        $allTasks = Auth::user()->tasks;
+
+        $tasks = $allTasks;
+
         $filter = $request->query('filter', 'all');
 
-        return view('tasks.index', ['tasks' => $tasks, 'filter' => $filter, 'count' => $tasks->count()]);
+        $counts = $allTasks->reduce(function ($carry, $task) {
+            $carry[$task->status]++;
+
+            return $carry;
+        }, ['pending' => 0, 'in_progress' => 0, 'completed' => 0]);
+
+        if ($filter !== 'all') {
+            $tasks = DB::table('tasks')->where('status', '=', $filter)->get();
+        }
+
+        return view('tasks.index', ['tasks' => $tasks, 'filter' => $filter, 'totalCount' => $allTasks->count(), 'counts' => $counts]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -46,5 +60,14 @@ class TaskController extends Controller
         $task = DB::table('tasks')->where('id', $id)->first();
 
         return view('tasks.task', ['task' => $task]);
+    }
+
+    public function updateStatus(string $id, Request $request)
+    {
+        $new_status = $request->input('status');
+
+        DB::table('tasks')->where('id', $id)->update(['status' => $new_status]);
+
+        return back();
     }
 }
