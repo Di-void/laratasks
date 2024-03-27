@@ -29,7 +29,7 @@ class TaskController extends Controller
             $tasks = DB::table('tasks')->where('status', '=', $filter)->get();
         }
 
-        return view('tasks.index', ['tasks' => $tasks, 'filter' => $filter, 'totalCount' => $allTasks->count(), 'counts' => $counts]);
+        return view('tasks.index', ['tasks' => $tasks->reverse(), 'filter' => $filter, 'totalCount' => $allTasks->count(), 'counts' => $counts]);
     }
 
     public function store(Request $request): RedirectResponse

@@ -1,17 +1,21 @@
 @props(['status', 'id', 'name', 'taskId'])
 
+@php
+$currentUrl = request()->path();
+@endphp
+
 <div class="bg-clr-primary-100 flex flex-col rounded-lg p-6 w-[253px]">
     <div class="flex justify-between items-center">
         <h1 class="text-clr-text-200 text-sm font-semibold">T-{{ $id < 10 ? '0' . $id : $id }}</h1>
 
-                <x-status-badge :status='$status' />
+                <x-status-badge :status="$status" />
     </div>
 
     <h2 class="mt-4 text-base font-medium mb-7 font-gelion-medium">{{ $name }}</h2>
 
     {{-- GPT says margin-top: auto pushes it to the bottom in a flexbox setting --}}
     <footer class="mt-auto">
-        <a href="{{ url("/tasks/{$taskId}") }}" class="capitalize cursor-pointer text-clr-primary-200 text-sm font-semibold font-gelion-semibold flex gap-4
+        <a href="{{ url("/tasks/{$taskId}?back={$currentUrl}") }}" class="capitalize cursor-pointer text-clr-primary-200 text-sm font-semibold font-gelion-semibold flex gap-4
             items-center"><span>view
                 task</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">

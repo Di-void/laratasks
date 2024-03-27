@@ -3,6 +3,8 @@
 $start_date = Carbon\Carbon::parse($task->created_at)->format('d/m/Y');
 $due_date = $task->due_date ? Carbon\Carbon::parse($task->due_date)->format('d/m/Y') : "NIL";
 
+$backLink = request()->query('back');
+
 @endphp
 
 <x-app-layout>
@@ -14,7 +16,7 @@ $due_date = $task->due_date ? Carbon\Carbon::parse($task->due_date)->format('d/m
             </div>
 
             <div class="mt-4">
-                <x-back-link-button backlink="/tasks" />
+                <x-back-link-button :backlink="$backLink" />
             </div>
         </header>
 
