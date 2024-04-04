@@ -40,9 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/tasks', [TaskController::class, 'create'])->name('tasks');
-    Route::post('/tasks', [TaskController::class, 'store']);
+    Route::post('/tasks', [TaskController::class, 'store'])->name('task.create');
     Route::get('/tasks/{id}', [TaskController::class, 'show']);
-    Route::put('/tasks/{id}', [TaskController::class, 'updateStatus']);
+    Route::patch('/tasks/{id}', [TaskController::class, 'updateStatus']);
+    Route::patch('/tasks/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
 });
 
 require __DIR__ . '/auth.php';

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +68,31 @@ class TaskController extends Controller
         $new_status = $request->input('status');
 
         DB::table('tasks')->where('id', $id)->update(['status' => $new_status]);
+
+        return back();
+    }
+
+    public function edit(string $id, Request $request): RedirectResponse
+    {
+
+        $db = DB::table('tasks')->where('id', $id);
+
+        $date_input = $request->input('due_date');
+
+        $task = $db->first();
+
+        if ($date_input !== null) {
+            $start_date = Carbon::parse($task->created_at)->toDateString();
+
+            $request->validate([
+                'due_date' => ['after_or_equal:' . $start_date, 'date']
+            ]);
+        }
+
+
+        $input = $request->all();
+        $due_date = $request->date('due_date');
+        $db->update(['name' => $input['name'], 'due_date' => $due_date, 'description' => $input['desc'], 'updated_at' => now()]);
 
         return back();
     }

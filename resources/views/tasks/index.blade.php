@@ -5,7 +5,7 @@ $taskCount = 0;
 <x-app-layout>
     <section x-data="modal" class="flex flex-col w-full">
 
-        <x-create-task-modal />
+        @include('tasks.partials.create-task-form')
 
         <header class="mt-4 flex justify-between">
             <div>

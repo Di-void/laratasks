@@ -8,7 +8,10 @@ $backLink = request()->query('back');
 @endphp
 
 <x-app-layout>
-    <section class="w-full">
+    <section class="w-full" x-data="modal">
+
+        @include('tasks.partials.edit-task-form')
+
         <header class="mt-4">
             <div>
                 <h1 class="text-clr-text-navy font-semibold font-gelion-semibold capitalize text-3xl">tasks > <span
@@ -66,7 +69,7 @@ $backLink = request()->query('back');
 
                     <x-delete-button />
 
-                    <x-edit-button />
+                    <x-edit-button x-on:click="openModal" />
                 </footer>
             </div>
 

@@ -13,7 +13,7 @@
 
     <input type="hidden" name="status" value="{{ $new_status }}">
 
-    @method('PUT')
+    @method('PATCH')
 
     <x-primary-button class="w-fit" type='submit' :variant="$task->status == 'in_progress' ? 'success' : null">
         {{ $task->status === 'pending' ? __('Work on It Now') : __('Mark as Done') }}
