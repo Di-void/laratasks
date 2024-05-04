@@ -1,11 +1,13 @@
 export default () => ({
     open: false,
 
-    openModal() {
-        this.open = true;
+    modalName: "",
+
+    openModal(name) {
+        this.modalName = name;
     },
 
     closeModal() {
-        this.open = false;
+        this.modalName = "";
     },
 });

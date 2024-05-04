@@ -67,9 +67,11 @@ $backLink = request()->query('back');
                         @endif
                     </div>
 
-                    <x-delete-button />
+                    @include('tasks.partials.delete-task-form')
 
-                    <x-edit-button x-on:click="openModal" />
+                    <x-delete-button x-on:click="openModal('delete-task')" />
+
+                    <x-edit-button x-on:click="openModal('edit-task')" />
                 </footer>
             </div>
 

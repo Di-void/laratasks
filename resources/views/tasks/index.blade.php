@@ -15,7 +15,7 @@ $taskCount = 0;
 
             <div>
                 @unless ($totalCount === 0)
-                <x-primary-button x-on:click="openModal">create a task</x-primary-button>
+                <x-primary-button x-on:click="openModal('create-task')">create a task</x-primary-button>
                 @endunless
             </div>
         </header>

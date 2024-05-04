@@ -1,7 +1,7 @@
 @props(['variant' => 'primary'])
 
 @php
-$bgColor = ['primary' => 'bg-clr-primary-200', 'success' => 'bg-clr-text-complete'][$variant];
+$bgColor = ['primary' => 'bg-clr-primary-200', 'success' => 'bg-clr-text-complete', 'danger' => 'bg-red-600'][$variant];
 @endphp
 
 <button {{ $attributes->merge(['type' => 'submit', 'class' => $bgColor . ' text-center w-full px-8 py-4 capitalize

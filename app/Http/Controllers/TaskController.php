@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class TaskController extends Controller
@@ -95,5 +96,14 @@ class TaskController extends Controller
         $db->update(['name' => $input['name'], 'due_date' => $due_date, 'description' => $input['desc'], 'updated_at' => now()]);
 
         return back();
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $db = DB::table('tasks')->where('id', $id);
+
+        $db->delete();
+
+        return Redirect::route('tasks');
     }
 }

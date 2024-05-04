@@ -1,4 +1,4 @@
-<x-task-modal>
+<x-modal name='create-task' heading='create task'>
     <form action="{{ route('task.create') }}" method="POST" class="mt-4 flex flex-col gap-6">
         @csrf
 
@@ -29,4 +29,4 @@
         </div>
     </form>
 
-</x-task-modal>
+</x-modal>

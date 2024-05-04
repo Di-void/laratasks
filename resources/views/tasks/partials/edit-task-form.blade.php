@@ -12,7 +12,7 @@ $hasErrors = $errors->any();
 
 @endphp
 
-<x-task-modal heading='edit task'>
+<x-modal heading='edit task' name="edit-task">
     <form action="{{ route('task.edit', ['id' => $task->id ]) }}" method="POST" class="mt-4 flex flex-col gap-6">
         @csrf
 
@@ -45,4 +45,4 @@ $hasErrors = $errors->any();
         </div>
     </form>
 
-</x-task-modal>
+</x-modal>
